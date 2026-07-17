@@ -1,33 +1,28 @@
 id: CNVD-2023-96945
 
 info:
-  name: McVie Safety Digital Management Platform - Arbitrary File Upload
-  author: DhiyaneshDk
+  name: 麦维安全生产数字化管理平台文件上传漏洞
+  author: free2e
   severity: high
-  description: |
-    Jiangsu Maiwei Intelligent Technology Co., Ltd. is a software technology service provider focusing on customized development of software products. There is a file upload vulnerability in Jiangsu Maiwei Intelligent Technology Co., Ltd.'s safe production digital management platform. An attacker can use this vulnerability to gain server permissions.
+  verified: true
+  description: |-
+    江苏麦维智能科技有限公司是一家专注于软件产品定制化开发的软件技术服务商。 江苏麦维智能科技有限公司安全生产数字化管理平台存在文件上传漏洞，攻击者可利用该漏洞获取服务器权限。
+    fofa: "安全生产数字化管理平台"
+    shodan: '安全生产数字化管理平台'
+  affected: 安全生产数字化管理平台当前所有版本
   reference:
-    - https://blog.csdn.net/weixin_42628854/article/details/136036109
-  metadata:
-    verified: true
-    max-request: 1
-    fofa-query: "安全生产数字化管理平台"
-  tags: cnvd,cnvd2023,file-upload,mcvie,vuln
+    - https://blog.csdn.net/weixin_42628854/article/details/136036109?spm=1001.2014.3001.5501
+    - https://www.cnvd.org.cn/patchInfo/show/270651
+  tags: cnvd,cnvd2023,fileupload
+  created: 2024/02/07
 
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}/Content/Plugins/uploader/FileChoose.html"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - "选择文件"
-          - "提交"
-        condition: and
-
-      - type: status
-        status:
-          - 200
-
+rules:
+  r0:
+    request:
+      method: GET
+      path: /Content/Plugins/uploader/FileChoose.html
+    expression: |
+      response.status == 200 && 
+      response.body.bcontains(b'选择文件') &&
+      response.body.bcontains(b'提交')
+expression: r0()
