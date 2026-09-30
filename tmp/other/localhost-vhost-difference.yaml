@@ -1,0 +1,32 @@
+http:
+- matchers:
+  - dsl:
+    - body_1 != body_2 && body_1 == body_3
+    type: dsl
+  raw:
+  - 'GET / HTTP/1.1
+
+    Host: {{Hostname}}
+
+
+    '
+  - 'GET / HTTP/1.1
+
+    Host: localhost
+
+
+    '
+  - 'GET / HTTP/1.1
+
+    Host: localhost1
+
+
+    '
+id: localhost-vhost-difference
+info:
+  author: '@chudamax'
+  description: Checks if the response when using "localhost" as the Host header is
+    different from the default Host.
+  name: Detect response difference with "localhost" vhost
+  severity: info
+  tags: vhost
