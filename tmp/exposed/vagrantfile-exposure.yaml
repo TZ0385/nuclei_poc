@@ -1,0 +1,31 @@
+http:
+- matchers:
+  - type: word
+    words:
+    - ./vagrant/config/vagrant-local.yml
+    - ./vagrant/config/vagrant-local.example.yml
+  - condition: or
+    negative: true
+    part: header
+    type: word
+    words:
+    - application/json
+    - text/html
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/Vagrantfile'
+id: vagrantfile-exposure
+info:
+  author: DhiyaneshDk
+  description: Vagrantfile is exposed to external users.
+  metadata:
+    max-request: 1
+    shodan-query: html:"Vagrantfile"
+    verified: true
+  name: Vagrantfile Exposure
+  severity: low
+  tags: config,exposure,vagrant,oss,files

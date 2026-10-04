@@ -1,0 +1,22 @@
+http:
+- matchers:
+  - type: word
+    words:
+    - HSTS 1.0 Known Hosts database for GNU Wget
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/.wget-hsts'
+id: wget-hsts-list-exposure
+info:
+  author: DhiyaneshDK
+  metadata:
+    max-request: 1
+    shodan-query: html:".wget-hsts"
+    verified: true
+  name: WGET HSTS List Exposure
+  severity: info
+  tags: devops,exposure,wget,files

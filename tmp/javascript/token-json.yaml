@@ -1,0 +1,27 @@
+http:
+- matchers:
+  - condition: and
+    type: word
+    words:
+    - '"access_token":'
+    - '"token_type":'
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/token.json'
+  - '{{BaseURL}}/search/token.json'
+  stop-at-first-match: true
+id: token-json
+info:
+  author: DhiyaneshDK
+  description: Internal token.json file is exposed.
+  metadata:
+    google-query: intitle:"index of" "token.json"
+    max-request: 2
+    verified: true
+  name: Token Json File Disclosure
+  severity: low
+  tags: exposure,cloud,google,devops,files
