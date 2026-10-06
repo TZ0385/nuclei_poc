@@ -1,0 +1,39 @@
+http:
+- matchers:
+  - condition: and
+    type: word
+    words:
+    - <title>Login</title>
+    - j_username
+    - j_password
+  - part: header
+    type: word
+    words:
+    - text/html
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/system/sling/cqform/defaultlogin.html'
+id: aem-sling-login
+info:
+  author: dhiyaneshDk
+  classification:
+    cpe: cpe:2.3:a:adobe:experience_manager:*:*:*:*:*:*:*:*
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cwe-id: CWE-200
+  description: Adobe Experience Manager Sling user login panel was detected.
+  metadata:
+    max-request: 1
+    product: experience_manager
+    shodan-query:
+    - http.title:"AEM Sign In"
+    - http.component:"Adobe Experience Manager"
+    vendor: adobe
+  name: Adobe Experience Manager Sling User Login - Detect
+  reference:
+  - https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/aem2.txt
+  severity: info
+  tags: panel,aem,adobe,sling

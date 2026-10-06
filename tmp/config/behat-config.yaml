@@ -1,0 +1,35 @@
+http:
+- matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - 'default:'
+    - 'paths:'
+    - 'suites:'
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/behat.yml'
+  - '{{BaseURL}}/behat.yml.dist'
+  stop-at-first-match: true
+id: behat-config
+info:
+  author: DhiyaneshDK
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
+    cvss-score: 5.3
+    cwe-id: CWE-200
+  description: Behat configuration file was detected.
+  metadata:
+    max-request: 2
+    shodan-query: html:"behat.yml"
+    verified: true
+  name: Behat Configuration File  - Detect
+  reference:
+  - https://docs.behat.org/en/v2.5/guides/7.config.html
+  severity: medium
+  tags: exposure,behat,devops,cicd
