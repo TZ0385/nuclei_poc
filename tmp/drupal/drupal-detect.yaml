@@ -1,0 +1,35 @@
+http:
+- extractors:
+  - group: 1
+    name: version_by_install
+    part: body
+    regex:
+    - class="site-version">([0-9.x-]+)
+    type: regex
+  matchers:
+  - condition: and
+    part: body
+    type: word
+    words:
+    - Initial release
+    - Drupal 1.0.0
+  - part: body
+    type: word
+    words:
+    - content="Drupal
+  matchers-condition: or
+  method: GET
+  path:
+  - '{{BaseURL}}'
+  - '{{BaseURL}}/CHANGELOG.txt'
+  - '{{BaseURL}}/core/install.php'
+id: drupal-detect
+info:
+  author: 1nf1n7y
+  metadata:
+    max-request: 3
+    shodan-query: http.component:"Drupal"
+    verified: true
+  name: Drupal Detection
+  severity: info
+  tags: tech,drupal
